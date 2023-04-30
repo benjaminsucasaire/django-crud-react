@@ -44,3 +44,20 @@ Acceso a la aplicación
 ````bash
 http://localhost:5173/
 ````
+
+### Opcional
+#### Crear base de datos para el proyecto
+puedes realizar estos pasasos si deseas migrar solo la estructura de la base de datos  desde django 
+
+````bash
+create database djangodbcrud;
+````
+#### migrar tablas a la base de datos desde python
+````bash
+python manage.py migrate
+````
+#### create superuser django (Opcional)
+podemos crear un usuario para el panel administrativo de django
+````bash
+python manage.py createsuperuser
+````
