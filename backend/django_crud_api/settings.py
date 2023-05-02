@@ -1,3 +1,4 @@
+import os
 """
 Django's settings for django_crud_api project.
 
@@ -78,11 +79,11 @@ WSGI_APPLICATION = 'django_crud_api.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "djangodbcrud",
-        "USER": "djangocruduser",
-        "PASSWORD": "djangocrudpassword",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "NAME": os.environ.get("POSTGRES_DB", "djangodbcrud"),
+        "USER": os.environ.get("POSTGRES_USER", "djangocruduser"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "djangocrudpassword"),
+        "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
+        "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
 }
 
@@ -126,7 +127,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # bash - cors authorization
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000","http://192.168.1.7:3000"]
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',

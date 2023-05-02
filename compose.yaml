@@ -1,35 +1,36 @@
-name: react-rust-postgres
+name: react-django-postgres
 services:
-#  frontend:
-#    build:
-#      context: frontend
-#      target: development
-#    networks:
-#      - client-side
-#    ports:
-#      - 3000:3000
+  frontend:
+    build:
+      context: frontend
+      target: development
+    networks:
+      - client-side
+    ports:
+      - "3000:3000"
 #    volumes:
-#      - ./frontend/src:/code/src:ro
-
-#  backend:
-#    build:
-#      context: backend
-#      target: development
-#    environment:
-#      - ADDRESS=0.0.0.0:8000
-#      - RUST_LOG=debug
-#      - PG_DBNAME=postgres
-#      - PG_HOST=db
-#      - PG_USER=postgres
-#      - PG_PASSWORD=mysecretpassword
-#    networks:
-#      - client-side
-#      - server-side
-#    volumes:
-#      - ./backend/src:/code/src
-#      - backend-cache:/code/target
-#    depends_on:
-#      - db
+#      - ./frontend/src:/code/src
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: backend
+      target: builder
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=djangodbcrud
+      - POSTGRES_USER=djangocruduser
+      - POSTGRES_PASSWORD=djangocrudpassword
+    ports:
+      - "8000:8000"
+    networks:
+      - client-side
+      - server-side
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db
 
   db:
     image: postgres:14
@@ -46,7 +47,7 @@ services:
       - db-data:/var/lib/postgresql/data
 
 networks:
-#  client-side:
+  client-side:
   server-side:
 
 volumes:

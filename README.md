@@ -38,7 +38,7 @@ Credenciales:
 
 Iniciar Servidor
 ````bash
-npm run dev
+npm start
 ````
 Acceso a la aplicación
 ````bash
@@ -61,3 +61,16 @@ podemos crear un usuario para el panel administrativo de django
 ````bash
 python manage.py createsuperuser
 ````
+
+Crear requirements.txt
+````bash
+pip freeze > requirements.txt
+````
+
+
+### Desplegar Containers
+docker compose -d up
+
+
+### Build AWS S3 artefacto
+npm run build
