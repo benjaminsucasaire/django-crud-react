@@ -9,6 +9,11 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
+import dotenv
+
+# Cargar las variables de entorno
+dotenv.load_dotenv()
 
 from pathlib import Path
 
@@ -24,7 +29,9 @@ SECRET_KEY = 'django-insecure-#2-@rqmdpt#wa-v)1h%w=5!z7xl@i*)f$088nmt6+2$t6v_vbd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+DATABASE_URL_RDS = os.environ.get('DATABASE_URL')
 
 # Application definition
 
@@ -122,8 +129,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # bash - cors authorization
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
-
+#CORS_ALLOWED_ORIGINS = ["https://front.bash.cloudstudio.cloud"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
+
+

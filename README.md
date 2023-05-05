@@ -44,3 +44,24 @@ Acceso a la aplicación
 ````bash
 http://localhost:5173/
 ````
+
+
+### Desplegar
+
+#### generar ejecutable
+
+npm run build
+
+
+enviar ejecutable a S3 
+
+aws s3 sync dist/ s3://buho-dev-s3-00-front-end-verne
+
+aws s3 --profile devops sync dist/ s3://buho-dev-s3-00-front-end-verne
+
+
+purgar cache de cloudfront
+
+aws cloudfront create-invalidation --distribution-id EF5KYFJMUYR3Z --paths "/*"
+
+aws cloudfront --profile devops  create-invalidation --distribution-id EF5KYFJMUYR3Z --paths "/*"
