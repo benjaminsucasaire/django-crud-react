@@ -42,7 +42,7 @@ npm start
 ````
 Acceso a la aplicación
 ````bash
-http://localhost:5173/
+http://localhost:3000/
 ````
 
 ### Opcional
